@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/skin"
+        android:layout_width="120px"
+        android:layout_height="270px"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/lb_profilename"
+        android:layout_marginTop="32dp" />
+
+    <TextView
+        android:id="@+id/lb_profilename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Spielername:"
+        android:textSize="30dp"
+        android:layout_alignBaseline="@+id/profilename"
+        android:layout_alignBottom="@+id/profilename"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="12dp" />
+    <TextView
+        android:id="@+id/profilename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:text="Hannes__99"
+        android:textSize="30dp"
+        android:layout_marginEnd="18dp"
+        android:layout_below="@+id/skin"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/lb_playtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/lb_profilename"
+        android:layout_below="@+id/lb_profilename"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="72dp"
+        android:textSize="30dp"
+        android:text="Spielzeit:" />
+
+    <TextView
+        android:id="@+id/playtime_h"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="10h"
+        android:layout_alignBaseline="@+id/lb_playtime"
+        android:layout_alignBottom="@+id/lb_playtime"
+        android:layout_toStartOf="@+id/profilename" />
+
+    <TextView
+        android:id="@+id/playtime_m"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/profilename"
+        android:layout_marginEnd="56dp"
+        android:textSize="30dp"
+        android:text="30min"
+        android:layout_alignTop="@+id/playtime_h" />
+
+    <TextView
+        android:id="@+id/lb_lastTimeOnline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="87dp"
+        android:textSize="30dp"
+        android:text="Zuletzt Online: "
+        android:layout_below="@+id/lb_playtime"
+        android:layout_alignStart="@+id/lb_playtime" />
+
+    <TextView
+        android:id="@+id/lastTimeOnline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="30.12.9999"
+        android:layout_alignBaseline="@+id/lb_lastTimeOnline"
+        android:layout_alignBottom="@+id/lb_lastTimeOnline"
+        android:layout_alignEnd="@+id/profilename" />
+</RelativeLayout>
