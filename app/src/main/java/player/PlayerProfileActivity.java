@@ -6,3 +6,4 @@ package player;
 
 public class PlayerProfileActivity {
 }
+

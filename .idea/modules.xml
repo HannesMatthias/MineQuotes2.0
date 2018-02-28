@@ -4,9 +4,7 @@
     <modules>
       <module fileurl="file://C:\Users\Admin_David\Documents\AndroidAppDeveloping\richtigeProgramme\MineQuotes2.0\MineQuotes.iml" filepath="C:\Users\Admin_David\Documents\AndroidAppDeveloping\richtigeProgramme\MineQuotes2.0\MineQuotes.iml" />
       <module fileurl="file://$PROJECT_DIR$/MineQuotes2.0.iml" filepath="$PROJECT_DIR$/MineQuotes2.0.iml" />
-      <module fileurl="file://C:\Users\Administrator\AndroidStudioProjects\MineQuotes2.0\MineQuotes2.0.iml" filepath="C:\Users\Administrator\AndroidStudioProjects\MineQuotes2.0\MineQuotes2.0.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Administrator\AndroidStudioProjects\MineQuotes2.0\app\app.iml" filepath="C:\Users\Administrator\AndroidStudioProjects\MineQuotes2.0\app\app.iml" />
       <module fileurl="file://C:\Users\Admin_David\Documents\AndroidAppDeveloping\richtigeProgramme\MineQuotes2.0\app\app.iml" filepath="C:\Users\Admin_David\Documents\AndroidAppDeveloping\richtigeProgramme\MineQuotes2.0\app\app.iml" />
     </modules>
   </component>
