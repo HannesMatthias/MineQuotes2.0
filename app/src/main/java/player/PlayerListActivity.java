@@ -1,13 +1,16 @@
 package player;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -26,7 +29,7 @@ import cz.msebera.android.httpclient.Header;
  * Created by Administrator on 28.02.2018.
  */
 
-public class PlayerListActivity extends Fragment {
+public class PlayerListActivity extends Fragment implements AdapterView.OnItemSelectedListener{
 
 
     private PlayerAdapter playerAdapter;
@@ -48,6 +51,8 @@ public class PlayerListActivity extends Fragment {
         return view;
     }
 
+
+
     private void fetchPlayerData() {
         playerClient.getBooks(new JsonHttpResponseHandler() {
             @Override
@@ -68,4 +73,21 @@ public class PlayerListActivity extends Fragment {
         });
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String playername = (String) adapterView.getItemAtPosition(i);
+        for (Player profiles : LoadAllPlayersManager.players) {
+            if(playername.equals(profiles.getPlayername())) {
+                Intent intent = new Intent(this.getContext(), PlayerProfileActivity.class );
+               // intent.putExtra("Player", new )
+
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }

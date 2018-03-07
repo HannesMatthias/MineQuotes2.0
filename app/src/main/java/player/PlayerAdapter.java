@@ -48,6 +48,11 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
         viewHolder.playername.setText(player.getPlayername());
 
         Picasso.with(getContext()).load(Uri.parse(player.getSkinUrl())).error(R.mipmap.ic_launcher).into(viewHolder.skin);
+
+        if(!LoadAllPlayersManager.players.contains(player)) {
+            LoadAllPlayersManager.players.add(player);
+        }
+
         return convertView;
     }
 }
