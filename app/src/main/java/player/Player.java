@@ -43,9 +43,12 @@ public class Player {
             if (o.has("Spieler_Name")) {
                 player.playername = o.getString("Spieler_Name");
 
-            } else if (o.has("PlayTime")) {
+            }
+            if (o.has("PlayTime")) {
                 player.playtime = o.getString("PlayTime");
-            }else if(o.has("UUID")) {
+            }
+
+            if(o.has("UUID")) {
                 player.setSkinUrl(o.getString("UUID"));
             }
 
