@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/playerprofile"
+    >
 
     <ImageView
         android:id="@+id/skin"
@@ -38,12 +40,11 @@
         android:id="@+id/lb_playtime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/lb_profilename"
         android:layout_below="@+id/lb_profilename"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="72dp"
-        android:textSize="30dp"
-        android:text="Spielzeit:" />
+        android:layout_marginTop="37dp"
+        android:layout_toStartOf="@+id/playtime_h"
+        android:text="Spielzeit:"
+        android:textSize="30dp" />
 
     <TextView
         android:id="@+id/playtime_h"
@@ -69,19 +70,28 @@
         android:id="@+id/lb_lastTimeOnline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="87dp"
-        android:textSize="30dp"
-        android:text="Zuletzt Online: "
+        android:layout_alignStart="@+id/lb_profilename"
         android:layout_below="@+id/lb_playtime"
-        android:layout_alignStart="@+id/lb_playtime" />
+        android:layout_marginTop="42dp"
+        android:text="Zuletzt Online: "
+        android:textSize="30dp" />
 
     <TextView
         android:id="@+id/lastTimeOnline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="30.12.9999"
         android:layout_alignBaseline="@+id/lb_lastTimeOnline"
         android:layout_alignBottom="@+id/lb_lastTimeOnline"
-        android:layout_alignEnd="@+id/profilename" />
+        android:layout_alignParentEnd="true"
+        android:text="30.12.9999"
+        android:textSize="30dp" />
+
+    <CheckedTextView
+        android:id="@+id/checkedTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/lb_profilename"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="399dp"
+        android:text="CheckedTextView" />
 </RelativeLayout>

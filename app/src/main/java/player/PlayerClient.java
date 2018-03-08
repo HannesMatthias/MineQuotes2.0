@@ -11,7 +11,8 @@ import java.net.URLEncoder;
 
 public class PlayerClient {
 
-    private static String API_BASE_URL = "http://178.238.238.85:7809/gk/playtime2.json";
+  //  private static String API_BASE_URL = "http://178.238.238.85:7809/gk/playtime2.json";
+    private static String API_BASE_URL = "http://178.238.238.85:8080/HttpServlet/HttpServlet?name=playerdata";
     private AsyncHttpClient client;
 
     public PlayerClient() {
@@ -20,7 +21,7 @@ public class PlayerClient {
 
 
 
-    public void getBooks(JsonHttpResponseHandler handler) {
+    public void getPlayers(JsonHttpResponseHandler handler) {
         client.get(API_BASE_URL, handler);
     }
 }

@@ -32,7 +32,7 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
         Player player = getItem(position);
-        Log.wtf("Playername: ", player.getPlayername());
+
         ViewHolder viewHolder;
         if (convertView == null) {
             viewHolder = new ViewHolder();
@@ -45,13 +45,12 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+
         viewHolder.playername.setText(player.getPlayername());
 
         Picasso.with(getContext()).load(Uri.parse(player.getSkinUrl())).error(R.mipmap.ic_launcher).into(viewHolder.skin);
 
-        if(!LoadAllPlayersManager.players.contains(player)) {
-            LoadAllPlayersManager.players.add(player);
-        }
+
 
         return convertView;
     }
