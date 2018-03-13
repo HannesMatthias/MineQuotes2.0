@@ -1,97 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/playerprofile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:layout_editor_absoluteY="81dp"
+
     >
 
     <ImageView
         android:id="@+id/skin"
         android:layout_width="120px"
         android:layout_height="270px"
-        app:srcCompat="@mipmap/ic_launcher"
+
         android:layout_alignParentTop="true"
+        android:layout_marginTop="24dp"
         android:layout_toEndOf="@+id/lb_profilename"
-        android:layout_marginTop="32dp" />
+        app:srcCompat="@mipmap/testskin" />
 
     <TextView
         android:id="@+id/lb_profilename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/profilename"
-        android:layout_alignBottom="@+id/profilename"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="12dp"
+
+
+        android:layout_above="@+id/onlinestatus"
+        android:layout_alignStart="@+id/onlinestatuslabel"
+        android:layout_marginBottom="13dp"
         android:text="Spielername:"
-        android:textSize="30dp" />
+        android:textSize="25sp" />
+
     <TextView
         android:id="@+id/profilename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
+
+        android:layout_alignBaseline="@+id/lb_profilename"
+        android:layout_alignBottom="@+id/lb_profilename"
+        android:layout_toEndOf="@+id/lb_profilename"
+        android:layout_marginLeft="20dp"
         android:text="Hannes__99"
-        android:textSize="30dp"
-        android:layout_marginEnd="18dp"
-        android:layout_below="@+id/skin"
-        android:layout_alignParentEnd="true" />
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/onlinestatuslabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/lb_playtime"
+        android:layout_centerVertical="true"
+        android:text="Onlinestatus:"
+        android:textSize="25sp" />
+
+    <ImageView
+        android:id="@+id/onlinestatus"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_toEndOf="@id/onlinestatuslabel"
+        android:layout_alignBottom="@+id/onlinestatuslabel"
+        android:layout_alignStart="@+id/profilename"
+        app:srcCompat="@mipmap/offline" />
+
 
     <TextView
         android:id="@+id/lb_playtime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lb_profilename"
-        android:layout_marginTop="37dp"
-        android:layout_toStartOf="@+id/playtime_h"
+        android:layout_alignStart="@+id/lb_lastTimeOnline"
+        android:layout_below="@+id/onlinestatus"
+        android:layout_marginTop="28dp"
         android:text="Spielzeit:"
-        android:textSize="30dp" />
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/playtime_days"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/lb_lastTimeOnline"
+        android:layout_marginEnd="11dp"
+        android:layout_toStartOf="@+id/playtime_h"
+        android:text="10days"
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/playtime_h"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="10h"
-        android:layout_alignBaseline="@+id/lb_playtime"
-        android:layout_alignBottom="@+id/lb_playtime"
-        android:layout_toStartOf="@+id/profilename" />
+
+        android:layout_alignBaseline="@+id/playtime_days"
+        android:layout_alignBottom="@+id/playtime_days"
+        android:layout_toEndOf="@+id/onlinestatus"
+        android:text="20h"
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/playtime_m"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/profilename"
-        android:layout_marginEnd="56dp"
-        android:textSize="30dp"
-        android:text="30min"
-        android:layout_alignTop="@+id/playtime_h" />
+
+        android:layout_alignBaseline="@+id/playtime_h"
+        android:layout_alignBottom="@+id/playtime_h"
+        android:layout_marginStart="11dp"
+        android:layout_toEndOf="@+id/playtime_h"
+        android:text="50min"
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/lb_lastTimeOnline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/lb_profilename"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/lb_playtime"
-        android:layout_marginTop="42dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="24dp"
         android:text="Zuletzt Online: "
-        android:textSize="30dp" />
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/lastTimeOnline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="110dp"
         android:layout_alignBaseline="@+id/lb_lastTimeOnline"
         android:layout_alignBottom="@+id/lb_lastTimeOnline"
         android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/skin"
         android:text="30.12.9999"
-        android:textSize="30dp" />
+        android:textSize="25sp" />
 
-    <CheckedTextView
-        android:id="@+id/checkedTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/lb_profilename"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="399dp"
-        android:text="CheckedTextView" />
 </RelativeLayout>

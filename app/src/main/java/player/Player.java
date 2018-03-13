@@ -14,33 +14,32 @@ import java.util.ArrayList;
 
 public class Player {
 
-
+    private String uuid;
     private String playername;
     private String playtime;
-    private String skinUrl;
+    private String lastOnlineDateTime;
+
+    private String skinUrlHead;
+    private String skinUrlBody;
     private final String defaultSkinHeadUrl = "https://crafatar.com/renders/head/";
+    private final String defaultSkinBodyUrl = "https://crafatar.com/renders/body/";
     public String getPlayername() {
         return playername;
     }
 
-    public String getPlaytime() {
-        return playtime;
-    }
 
-    public String getSkinUrl() {
-        return skinUrl;
-    }
 
     public void setSkinUrl(String url) {
-        this.skinUrl = defaultSkinHeadUrl + url;
+        this.skinUrlHead = defaultSkinHeadUrl + url;
+        this.skinUrlBody = defaultSkinBodyUrl + url;
        // Log.e("Skin", skinUrl);
     }
 
-    public static Player formJSON(JSONObject o) {
+    public static Player getJsonObject(JSONObject o) {
         Player player = new Player();
         try {
 
-
+            //##################PlayerList [Start]##################
             if (o.has("playername")) {
                 player.playername = o.getString("playername");
                // Log.e("Spieler", player.playername);
@@ -48,27 +47,53 @@ public class Player {
             if (o.has("playtime")) {
                 player.playtime = o.getString("playtime");
             }
-
             if(o.has("uuid")) {
                 player.setSkinUrl(o.getString("uuid"));
+                player.uuid = o.getString("uuid");
             }
+            if(o.has("lastOnlineTimeDate")) {
+                player.lastOnlineDateTime = o.getString("lastOnlineTimeDate");
+            }
+            //##################PlayerList [End]##################
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return player;
     }
 
-    public static ArrayList<Player> fromJSON(JSONArray a) {
+    public static ArrayList<Player> fetchJsonArray(JSONArray a) {
         ArrayList<Player> list = new ArrayList<>();
 
         for (int i = 0; i < a.length(); i++) {
             try {
-                list.add(formJSON(a.getJSONObject(i)));
+                list.add(getJsonObject(a.getJSONObject(i)));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
 
         return list;
+    }
+
+    public String getPlaytime() {
+        return playtime;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public String getSkinUrlHead() {
+        return skinUrlHead;
+    }
+
+    public String getSkinUrlBody() {
+        return skinUrlBody;
+    }
+
+    public String getLastOnlineDateTime() {
+        return lastOnlineDateTime;
     }
 }

@@ -1,12 +1,10 @@
-package player;
+package player.playerlist;
 
 
-import android.content.Intent;
+
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -19,16 +17,17 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.rubrunghi.dev.minequotes.MainActivity;
 import com.rubrunghi.dev.minequotes.R;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
+import player.LoadAllPlayersManager;
+import player.Player;
+import player.PlayerClient;
+import player.PlayerProfileActivity;
 
 /**
  * Created by Administrator on 28.02.2018.
@@ -54,32 +53,33 @@ public class PlayerListActivity extends Fragment {
         playerAdapter = new PlayerAdapter(getActivity(), players);
 
         playerlist.setAdapter(playerAdapter);
-        fetchPlayerData();
+        fetchPlayerData("playerdata");
 
         return view;
     }
 
 
 
-    private void fetchPlayerData() {
+    private void fetchPlayerData(String action) {
         progressBar.setIndeterminate(true);
-        playerClient.getPlayers(new JsonHttpResponseHandler() {
+        playerClient.getPlayers(action, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
 
                 if (response != null) {
 
-                    ArrayList<Player> players = Player.fromJSON(response);
-
+                    ArrayList<Player> players = Player.fetchJsonArray(response);
+                    Log.e("PLayerFetchingSize", players.size() +"");
 
                     playerAdapter.clear();
+                    LoadAllPlayersManager.players.clear();
                     for (Player b : players) {
                         playerAdapter.add(b);
                         LoadAllPlayersManager.addPlayer(b);
                     }
                     playerAdapter.notifyDataSetChanged();
                     progressBar.setIndeterminate(false);
-                    Log.e("Indeterminate", "false");
+
               //      Log.e("1","" + LoadAllPlayersManager.players.size());
                 }
             }
@@ -99,8 +99,14 @@ public class PlayerListActivity extends Fragment {
                 Player player = (Player) parent.getItemAtPosition(position);
                 for (Player profiles : LoadAllPlayersManager.players) {
                     if(player.getPlayername().equals(profiles.getPlayername())) {
+
+                        PlayerProfileActivity profileActivity = new PlayerProfileActivity();
+                        Bundle b = new Bundle();
+                        b.putString("uuid", player.getUuid());
+
+                        profileActivity.setArguments(b);
                         FragmentManager fm = getActivity().getSupportFragmentManager();
-                        fm.beginTransaction().replace(R.id.main, new PlayerProfileActivity()).commit();
+                        fm.beginTransaction().addToBackStack("").replace(R.id.main, profileActivity).commit();
                         break;
                     }
                 }
@@ -111,12 +117,16 @@ public class PlayerListActivity extends Fragment {
 
             public void afterTextChanged(Editable s) {
 
-                for(Player profiles : LoadAllPlayersManager.players) {
-                   if(profiles.getPlayername().equals(s.toString())) {
+            //    for(Player profiles : LoadAllPlayersManager.players) {
+             //      if(profiles.getPlayername().contains(s.toString())) {
+                       /*
                        playerAdapter.clear();
                        playerAdapter.add(profiles);
                        playerAdapter.notifyDataSetChanged();
+*/
+                       ArrayList<Player> filteredPlayers = LoadAllPlayersManager.filterPlayers(s.toString().toLowerCase());
 
+                       loadList(filteredPlayers);
                        playerlist.post(new Runnable() {
                            @Override
                            public void run() {
@@ -124,10 +134,10 @@ public class PlayerListActivity extends Fragment {
                            }
                        });
 
-                       break;
-                   }
+                   //    break;
+                 //  }
 
-                }
+               // }
                 if(isEmpty(searchField)) {
 
                     refreshList();
@@ -155,6 +165,9 @@ public class PlayerListActivity extends Fragment {
         for(Player p : filterPlayerList) {
             playerAdapter.add(p);
         }
+
+
+
         playerAdapter.notifyDataSetChanged();
     }
 

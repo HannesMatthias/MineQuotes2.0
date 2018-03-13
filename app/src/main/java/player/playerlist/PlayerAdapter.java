@@ -1,4 +1,4 @@
-package player;
+package player.playerlist;
 
 import android.content.Context;
 import android.net.Uri;
@@ -16,6 +16,8 @@ import com.squareup.picasso.Picasso;
 
 
 import java.util.ArrayList;
+
+import player.Player;
 
 public class PlayerAdapter extends ArrayAdapter<Player> {
 
@@ -48,7 +50,7 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
 
         viewHolder.playername.setText(player.getPlayername());
 
-        Picasso.with(getContext()).load(Uri.parse(player.getSkinUrl())).error(R.mipmap.ic_launcher).into(viewHolder.skin);
+        Picasso.with(getContext()).load(Uri.parse(player.getSkinUrlHead())).error(R.mipmap.ic_launcher).into(viewHolder.skin);
 
 
 

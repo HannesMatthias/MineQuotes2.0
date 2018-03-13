@@ -1,8 +1,8 @@
 package player;
 
+
 import android.util.Log;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -25,15 +25,25 @@ public class LoadAllPlayersManager {
         }
     }
 
-    public static ArrayList<Player> filterPlayers(Player player) { //Benötige ich vlt. trotzdem nicht mehr.
+    public static ArrayList<Player> filterPlayers(String name) { //Benötige ich vlt. trotzdem nicht mehr.
         ArrayList<Player> filterList = new ArrayList<>();
         for(Player p : players) {
-            if(p.getPlayername().contains(player.getPlayername())) {
+            if(p.getPlayername().toLowerCase().contains(name)) {
                 filterList.add(p);
-
             }
         }
+        Log.e("Size", " " + filterList.size());
+
         return filterList;
+    }
+
+    public static Player getPlayerByUuid(String uuid) {
+        for(Player p : players) {
+            if(p.getUuid().equals(uuid)) {
+                return p;
+            }
+        }
+        return null;
     }
 
 
