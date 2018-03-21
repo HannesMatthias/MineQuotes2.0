@@ -6,7 +6,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 /**
- * Created by Administrator on 07.03.2018.
+ * Created by Manfred on 07.03.2018.
  */
 
 public class LoadAllPlayersManager {

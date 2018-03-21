@@ -9,7 +9,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by Administrator on 28.02.2018.
+ * Created by Manfred on 28.02.2018.
  */
 
 public class Player {
