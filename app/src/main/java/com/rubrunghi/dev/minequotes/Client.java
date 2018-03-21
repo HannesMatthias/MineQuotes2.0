@@ -1,4 +1,4 @@
-package player;
+package com.rubrunghi.dev.minequotes;
 
 import android.util.Log;
 
@@ -9,18 +9,18 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 
-public class PlayerClient {
+public class Client {
 
     private final String BASIC_URL = "http://178.238.238.85:8080/HttpServlet/HttpServlet?name=";
     private AsyncHttpClient client;
 
-    public PlayerClient() {
+    public Client() {
         client = new AsyncHttpClient();
     }
 
 
 
-    public void getPlayers(String action, JsonHttpResponseHandler handler) {
+    public void getUrl(String action, JsonHttpResponseHandler handler) {
 
         client.get(BASIC_URL + action, handler);
     }

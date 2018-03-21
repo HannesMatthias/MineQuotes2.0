@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
+import login.LoginActivity;
 import player.playerlist.PlayerListActivity;
 
 public class MainActivity extends AppCompatActivity
@@ -88,6 +89,10 @@ public class MainActivity extends AppCompatActivity
             FragmentManager fm = getSupportFragmentManager();
 
             fm.beginTransaction().addToBackStack("").replace(R.id.main, new PlayerListActivity()).commit();
+        }else if(id == R.id.nav_banlist) {
+            FragmentManager fm = getSupportFragmentManager();
+
+            fm.beginTransaction().addToBackStack("").replace(R.id.main, new LoginActivity()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

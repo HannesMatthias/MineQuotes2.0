@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import cz.msebera.android.httpclient.Header;
 import player.LoadAllPlayersManager;
 import player.Player;
-import player.PlayerClient;
+import com.rubrunghi.dev.minequotes.Client;
 import player.PlayerProfileActivity;
 
 /**
@@ -39,14 +39,14 @@ public class PlayerListActivity extends Fragment {
     private ProgressBar progressBar;
     private PlayerAdapter playerAdapter;
     private ListView playerlist;
-    private PlayerClient playerClient;
+    private Client client;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.playerlist, container, false);
         super.onCreate(savedInstanceState);
         searchField = (EditText) view.findViewById(R.id.searchPlayer);
         progressBar = (ProgressBar) view.findViewById(R.id.playerListLoadingBar);
-        playerClient = new PlayerClient();
+        client = new Client();
         playerlist = (ListView) view.findViewById(R.id.playerlistView);
         setupListListener();
         ArrayList<Player> players = new ArrayList<>();
@@ -62,7 +62,7 @@ public class PlayerListActivity extends Fragment {
 
     private void fetchPlayerData(String action) {
         progressBar.setIndeterminate(true);
-        playerClient.getPlayers(action, new JsonHttpResponseHandler() {
+        client.getUrl(action, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
 

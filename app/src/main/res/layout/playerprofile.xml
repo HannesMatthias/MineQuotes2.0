@@ -16,7 +16,8 @@
         android:layout_height="270px"
         android:layout_alignParentTop="true"
         android:layout_marginTop="24dp"
-        android:layout_toEndOf="@+id/lb_profilename"/>
+        android:layout_toEndOf="@+id/lb_profilename"
+        android:src="@mipmap/testskin"/>
 
     <TextView
         android:id="@+id/lb_profilename"
@@ -55,7 +56,9 @@
         android:layout_height="40dp"
         android:layout_toEndOf="@id/lb_onlineCheck"
         android:layout_alignBottom="@+id/lb_onlineCheck"
-        android:layout_alignStart="@+id/profilename"/>
+        android:layout_alignStart="@+id/profilename"
+        android:src="@mipmap/offline"
+        />
 
 
     <TextView
