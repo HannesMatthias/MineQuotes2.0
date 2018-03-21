@@ -14,11 +14,9 @@
         android:id="@+id/skin"
         android:layout_width="120px"
         android:layout_height="270px"
-
         android:layout_alignParentTop="true"
         android:layout_marginTop="24dp"
-        android:layout_toEndOf="@+id/lb_profilename"
-        app:srcCompat="@mipmap/testskin" />
+        android:layout_toEndOf="@+id/lb_profilename"/>
 
     <TextView
         android:id="@+id/lb_profilename"
@@ -26,8 +24,8 @@
         android:layout_height="wrap_content"
 
 
-        android:layout_above="@+id/onlinestatus"
-        android:layout_alignStart="@+id/onlinestatuslabel"
+        android:layout_above="@+id/bannedPlayerIP"
+        android:layout_alignStart="@+id/bannedPlayerIPlabel"
         android:layout_marginBottom="13dp"
         android:text="Spielername:"
         android:textSize="25sp" />
@@ -45,39 +43,38 @@
         android:textSize="25sp" />
 
     <TextView
-        android:id="@+id/onlinestatuslabel"
+        android:id="@+id/bannedPlayerIPlabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/lb_playtime"
+        android:layout_alignStart="@+id/lb_banReason"
         android:layout_centerVertical="true"
         android:text="Onlinestatus:"
         android:textSize="25sp" />
 
     <ImageView
-        android:id="@+id/onlinestatus"
+        android:id="@+id/bannedPlayerIP"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_toEndOf="@id/onlinestatuslabel"
-        android:layout_alignBottom="@+id/onlinestatuslabel"
-        android:layout_alignStart="@+id/profilename"
-        app:srcCompat="@mipmap/offline" />
+        android:layout_toEndOf="@id/bannedPlayerIPlabel"
+        android:layout_alignBottom="@+id/bannedPlayerIPlabel"
+        android:layout_alignStart="@+id/profilename"/>
 
 
     <TextView
-        android:id="@+id/lb_playtime"
+        android:id="@+id/lb_banReason"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/lb_lastTimeOnline"
-        android:layout_below="@+id/onlinestatus"
+        android:layout_alignStart="@+id/lb_banType"
+        android:layout_below="@+id/bannedPlayerIP"
         android:layout_marginTop="28dp"
         android:text="Spielzeit:"
         android:textSize="25sp" />
 
     <TextView
-        android:id="@+id/playtime_days"
+        android:id="@+id/banReason"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/lb_lastTimeOnline"
+        android:layout_above="@+id/lb_banType"
         android:layout_marginEnd="11dp"
         android:layout_toStartOf="@+id/playtime_h"
         android:text="10days"
@@ -88,9 +85,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_alignBaseline="@+id/playtime_days"
-        android:layout_alignBottom="@+id/playtime_days"
-        android:layout_toEndOf="@+id/onlinestatus"
+        android:layout_alignBaseline="@+id/banReason"
+        android:layout_alignBottom="@+id/banReason"
+        android:layout_toEndOf="@+id/bannedPlayerIP"
         android:text="20h"
         android:textSize="25sp" />
 
@@ -107,22 +104,22 @@
         android:textSize="25sp" />
 
     <TextView
-        android:id="@+id/lb_lastTimeOnline"
+        android:id="@+id/lb_banType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/lb_playtime"
+        android:layout_below="@+id/lb_banReason"
         android:layout_marginStart="18dp"
         android:layout_marginTop="24dp"
         android:text="Zuletzt Online: "
         android:textSize="25sp" />
 
     <TextView
-        android:id="@+id/lastTimeOnline"
+        android:id="@+id/banType"
         android:layout_width="200dp"
         android:layout_height="110dp"
-        android:layout_alignBaseline="@+id/lb_lastTimeOnline"
-        android:layout_alignBottom="@+id/lb_lastTimeOnline"
+        android:layout_alignBaseline="@+id/lb_banType"
+        android:layout_alignBottom="@+id/lb_banType"
         android:layout_alignParentEnd="true"
         android:layout_toEndOf="@+id/skin"
         android:text="30.12.9999"
