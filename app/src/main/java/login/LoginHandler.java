@@ -6,6 +6,8 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.rubrunghi.dev.minequotes.Client;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 

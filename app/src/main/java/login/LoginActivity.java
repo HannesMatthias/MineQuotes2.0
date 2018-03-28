@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ import com.rubrunghi.dev.minequotes.MainActivity;
 import com.rubrunghi.dev.minequotes.R;
 
 import java.util.ArrayList;
+
+import player.Player;
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -55,20 +58,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
            loginCheck();
         }
     }
-
+    public static LoginProfiles loggedInUser;
     public void loginCheck() {
         ArrayList<LoginProfiles> profiles = handler.getLoginDatas();
 
         for (LoginProfiles profile : profiles){
             if (profile.getUsername().equals(user.getText().toString()) && profile.getPassword().equals(passwd.getText().toString())){
-                Toast.makeText(this, "Eingeloggt ! ! !", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Eingeloggt!", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(this, MainActivity.class);
+                Log.e("uuid",  profile.getPlayerID());
+                loggedInUser = profile;
                 startActivity(i);
+
                 return;
             }
         }
 
-        Toast.makeText(this, "einlogging gefailed", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Falsche Logindaten", Toast.LENGTH_LONG).show();
     }
 
 }
