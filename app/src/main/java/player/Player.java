@@ -21,8 +21,9 @@ public class Player {
 
     private String skinUrlHead;
     private String skinUrlBody;
-    private final String defaultSkinHeadUrl = "https://crafatar.com/renders/head/";
-    private final String defaultSkinBodyUrl = "https://crafatar.com/renders/body/";
+    private final String DEFAULTSKINURL_HEAD = "https://crafatar.com/renders/head/";
+    private final String DEFAULTSKINURL_BODY = "https://crafatar.com/renders/body/";
+    private boolean status;
     public String getPlayername() {
         return playername;
     }
@@ -30,8 +31,8 @@ public class Player {
 
 
     public void setSkinUrl(String url) {
-        this.skinUrlHead = defaultSkinHeadUrl + url;
-        this.skinUrlBody = defaultSkinBodyUrl + url;
+        this.skinUrlHead = DEFAULTSKINURL_HEAD + url;
+        this.skinUrlBody = DEFAULTSKINURL_BODY + url;
        // Log.e("Skin", skinUrl);
     }
 
@@ -53,6 +54,9 @@ public class Player {
             }
             if(o.has("lastOnlineTimeDate")) {
                 player.lastOnlineDateTime = o.getString("lastOnlineTimeDate");
+            }
+            if(o.has("status")) {
+                player.status = o.getBoolean("status");
             }
             //##################PlayerList [End]##################
 
@@ -95,5 +99,9 @@ public class Player {
 
     public String getLastOnlineDateTime() {
         return lastOnlineDateTime;
+    }
+
+    public boolean isStatus() {
+        return status;
     }
 }

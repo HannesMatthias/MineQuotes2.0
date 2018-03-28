@@ -1,8 +1,10 @@
 package login;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,37 +17,35 @@ import android.widget.Toast;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
+import com.rubrunghi.dev.minequotes.MainActivity;
 import com.rubrunghi.dev.minequotes.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by Admin_David on 21.03.2018.
- */
 
-public class LoginActivity extends Fragment implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     private EditText user;
     private EditText passwd;
     private Button btn_login;
     LoginHandler handler;
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.login_layout, container, false);
-        RelativeLayout layout = (RelativeLayout) view.findViewById(R.id.login);
 
-        user = (EditText) view.findViewById(R.id.user_field);
-        passwd = (EditText) view.findViewById(R.id.passwd_field);
-        btn_login = (Button) view.findViewById(R.id.logIn_btn);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.login_layout);
+
+        user = (EditText) findViewById(R.id.user_field);
+        passwd = (EditText) findViewById(R.id.passwd_field);
+        btn_login = (Button) findViewById(R.id.logIn_btn);
 
         btn_login.setOnClickListener(this);
         handler = new LoginHandler();
         handler.getLogins("login");
 
 
-        return view;
+
     }
 
     @Override
@@ -61,12 +61,14 @@ public class LoginActivity extends Fragment implements View.OnClickListener {
 
         for (LoginProfiles profile : profiles){
             if (profile.getUsername().equals(user.getText().toString()) && profile.getPassword().equals(passwd.getText().toString())){
-                Toast.makeText(getActivity(), "Eingeloggt ! ! !", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Eingeloggt ! ! !", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(this, MainActivity.class);
+                startActivity(i);
                 return;
             }
         }
 
-        Toast.makeText(getActivity(), "einlogging gefailed", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "einlogging gefailed", Toast.LENGTH_LONG).show();
     }
 
 }

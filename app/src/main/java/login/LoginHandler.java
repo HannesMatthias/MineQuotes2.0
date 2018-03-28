@@ -11,9 +11,7 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
-/**
- * Created by Admin_David on 21.03.2018.
- */
+
 
 public class LoginHandler {
     ArrayList<LoginProfiles> loginDatas;

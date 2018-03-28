@@ -8,9 +8,6 @@ import java.util.ArrayList;
 
 import player.Player;
 
-/**
- * Created by Admin_David on 21.03.2018.
- */
 
 public class LoginProfiles {
 

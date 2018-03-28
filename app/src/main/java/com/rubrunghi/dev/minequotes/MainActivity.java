@@ -1,5 +1,6 @@
 package com.rubrunghi.dev.minequotes;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 
@@ -89,12 +90,7 @@ public class MainActivity extends AppCompatActivity
             FragmentManager fm = getSupportFragmentManager();
 
             fm.beginTransaction().addToBackStack("").replace(R.id.main, new PlayerListActivity()).commit();
-        }else if(id == R.id.nav_banlist) {
-            FragmentManager fm = getSupportFragmentManager();
-
-            fm.beginTransaction().addToBackStack("").replace(R.id.main, new LoginActivity()).commit();
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

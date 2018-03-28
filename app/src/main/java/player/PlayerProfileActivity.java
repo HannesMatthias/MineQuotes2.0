@@ -37,6 +37,7 @@ public class PlayerProfileActivity extends Fragment {
     private TextView playtime_h;
     private TextView playtime_m;
     private TextView lastTimeOnline;
+    private ImageView onlinestatus;
 
 
 
@@ -50,9 +51,15 @@ public class PlayerProfileActivity extends Fragment {
         playtime_h = (TextView) view.findViewById(R.id.playtime_h);
         playtime_m = (TextView) view.findViewById(R.id.playtime_m);
         lastTimeOnline =  (TextView) view.findViewById(R.id.lastTimeOnline);
+        onlinestatus = (ImageView) view.findViewById(R.id.onlineCheck);
         searchProfile();
         Picasso.with(getContext()).load(Uri.parse(p.getSkinUrlBody())).error(R.mipmap.ic_launcher).into(skin);
         playername.setText(p.getPlayername());
+        if(p.isStatus()) {
+            onlinestatus.setImageResource(R.mipmap.online);
+        }else {
+            onlinestatus.setImageResource(R.mipmap.offline);
+        }
 
         divideTime();
 
