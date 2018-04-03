@@ -1,6 +1,7 @@
 package login;
 
 import android.net.Uri;
+import android.util.Log;
 
 import com.rubrunghi.dev.minequotes.R;
 import com.squareup.picasso.Picasso;
@@ -22,6 +23,13 @@ public class LoginProfiles {
     private String playerID;
     private final String DEFAULTSKINURL_HEAD = "https://crafatar.com/renders/head/";
 
+    public LoginProfiles() {}
+    public LoginProfiles(String username, String password, String rankname, String playerID) {
+        this.username = username;
+        this.password = password;
+        this.rankname = rankname;
+        this.playerID = playerID;
+    }
 
 
     public static LoginProfiles getJsonObject(JSONObject o) {
@@ -42,7 +50,7 @@ public class LoginProfiles {
                 loginProfiles.password = o.getString("pw");
             }
 
-
+            Log.e("LoginHANNES", loginProfiles.getUsername());
         } catch (JSONException e) {
             e.printStackTrace();
         }

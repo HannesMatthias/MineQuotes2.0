@@ -14,35 +14,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.rubrunghi.dev.minequotes.R;
-
-
 import org.json.JSONObject;
-
-import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
-import cz.msebera.android.httpclient.HttpConnection;
+import java.io.IOException;import java.io.UnsupportedEncodingException;
 import cz.msebera.android.httpclient.HttpResponse;
-import cz.msebera.android.httpclient.NameValuePair;
 import cz.msebera.android.httpclient.client.HttpClient;
-import cz.msebera.android.httpclient.client.entity.UrlEncodedFormEntity;
 import cz.msebera.android.httpclient.client.methods.HttpPost;
 import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.impl.client.BasicResponseHandler;
 import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
-import cz.msebera.android.httpclient.message.BasicNameValuePair;
-import cz.msebera.android.httpclient.params.BasicHttpParams;
-import cz.msebera.android.httpclient.params.HttpConnectionParams;
-import cz.msebera.android.httpclient.params.HttpParams;
-import cz.msebera.android.httpclient.protocol.HTTP;
 
 
 public class PostActivity extends Fragment {
@@ -96,13 +75,15 @@ public class PostActivity extends Fragment {
 
     private String getServerResponse(String json) {
 
-        HttpPost post = new HttpPost(url.toString());
+        HttpPost post = new HttpPost(url);
 
         try {
             StringEntity entity = new StringEntity(json);
 
 
-            post.setHeader("Content-type", "application/json");
+           // post.setHeader("Content-type", "application/json");
+            post.setHeader("Accept", "application/json");
+            post.setHeader("Content-type", "application/json; charset=UTF-8");
             post.setEntity(entity);
             //To send the data
             DefaultHttpClient client = new DefaultHttpClient();
@@ -124,15 +105,9 @@ public class PostActivity extends Fragment {
         JSONObject mylogin = new JSONObject();
 
         try {
-            mylogin.put("test", "testuser");
-            mylogin.put("user", "hannes");
-            mylogin.put("password", "mh1427");
-
-            JSONObject other = new JSONObject();
-            other.put("other","othervalue");
-            mylogin.put("others", other);
-
-            return mylogin.toString(1);
+            mylogin.put("username", "Hannes");
+            mylogin.put("password", "123");
+            return mylogin.toString();
         }catch (Exception e) {
             e.fillInStackTrace();
         }
