@@ -1,24 +1,18 @@
 package player;
 
 
-import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
+
 import com.rubrunghi.dev.minequotes.R;
 import com.squareup.picasso.Picasso;
 
@@ -70,7 +64,7 @@ public class PlayerProfileActivity extends Fragment {
         Bundle getDatas = getArguments();
         String uuid = getDatas.getString("uuid");
         this.p = LoadAllPlayersManager.getPlayerByUuid(uuid);
-        Log.e("Player profile searcher", p.getPlayername());
+
 
     }
     public void divideTime() {

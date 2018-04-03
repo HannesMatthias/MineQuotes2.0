@@ -12,7 +12,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
-
+import rank.RankActivity;
 
 
 public class LoginHandler {
@@ -32,6 +32,7 @@ public class LoginHandler {
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
 
                 if (response != null) {
+                    Log.e("Login","logging");
                     loginDatas = LoginProfiles.fetchJsonArray(response);
 
                 }

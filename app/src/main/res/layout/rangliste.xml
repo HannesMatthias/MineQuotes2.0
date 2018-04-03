@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ranglisteRelativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+
+    >
+
+    <ImageView
+        android:id="@+id/skin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/rang"
+
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/skin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="#12"
+        android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/lb_profilename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/rang"
+        android:layout_marginTop="15dp"
+        android:text="@string/playername_de"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/profilename"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+
+        android:layout_alignBaseline="@+id/lb_profilename"
+        android:layout_alignBottom="@+id/lb_profilename"
+        android:layout_centerHorizontal="true"
+        android:text="Hannes__99"
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:id="@+id/lb_punkte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/profilename"
+        android:text="Punkte:"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/punkte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ranglisteTop10"
+        android:layout_toEndOf="@+id/lb_profilename"
+        android:text="512"
+        android:textSize="20sp" />
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/lb_punkte"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:id="@+id/ranglisteTop10"
+        >
+        <ListView
+            android:id="@+id/playerlistView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ListView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/lb_kd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/profilename"
+        android:layout_alignTop="@+id/punkte"
+        android:text="K/D:"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/kd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/lb_kd"
+        android:layout_marginStart="28dp"
+        android:layout_toEndOf="@+id/profilename"
+        android:text="3.5"
+        android:textSize="20sp" />
+</RelativeLayout>
+
+

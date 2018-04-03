@@ -23,6 +23,7 @@ public class Player {
     private String skinUrlBody;
     private final String DEFAULTSKINURL_HEAD = "https://crafatar.com/renders/head/";
     private final String DEFAULTSKINURL_BODY = "https://crafatar.com/renders/body/";
+
     private boolean status;
     public String getPlayername() {
         return playername;
@@ -30,9 +31,9 @@ public class Player {
 
 
 
-    public void setSkinUrl(String url) {
-        this.skinUrlHead = DEFAULTSKINURL_HEAD + url;
-        this.skinUrlBody = DEFAULTSKINURL_BODY + url;
+    public void setSkinUrl(String url, int headsize, int bodysize) {
+        this.skinUrlHead = DEFAULTSKINURL_HEAD + url + "?scale=" + headsize +"&overlay";
+        this.skinUrlBody = DEFAULTSKINURL_BODY + url + "?scale=" + bodysize +"&overlay";
        // Log.e("Skin", skinUrl);
     }
 
@@ -41,17 +42,19 @@ public class Player {
         try {
 
             //##################PlayerList [Start]##################
+
+            if(o.has("uuid")) {
+                player.uuid = o.getString("uuid");
+                player.setSkinUrl(o.getString("uuid"),6,10);
+            }
+
             if (o.has("playername")) {
                 player.playername = o.getString("playername");
-               // Log.e("Spieler", player.playername);
             }
             if (o.has("playtime")) {
                 player.playtime = o.getString("playtime");
             }
-            if(o.has("uuid")) {
-                player.setSkinUrl(o.getString("uuid"));
-                player.uuid = o.getString("uuid");
-            }
+
             if(o.has("lastOnlineTimeDate")) {
                 player.lastOnlineDateTime = o.getString("lastOnlineTimeDate");
             }

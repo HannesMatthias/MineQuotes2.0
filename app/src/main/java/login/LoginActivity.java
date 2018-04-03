@@ -2,6 +2,7 @@ package login;
 
 
 import android.content.Intent;
+import android.icu.text.UnicodeSetSpanner;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -33,7 +34,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText passwd;
     private Button btn_login;
     LoginHandler handler;
-
+    ArrayList<LoginProfiles> arrPlayer = new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,14 +48,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         handler = new LoginHandler();
         handler.getLogins("login");
 
-
-
     }
 
     @Override
     public void onClick(View v) {
         if (btn_login == v){
-
            loginCheck();
         }
     }
@@ -64,9 +62,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         for (LoginProfiles profile : profiles){
             if (profile.getUsername().equals(user.getText().toString()) && profile.getPassword().equals(passwd.getText().toString())){
-                Toast.makeText(this, "Eingeloggt!", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(this, MainActivity.class);
-                Log.e("uuid",  profile.getPlayerID());
+
                 loggedInUser = profile;
                 startActivity(i);
 

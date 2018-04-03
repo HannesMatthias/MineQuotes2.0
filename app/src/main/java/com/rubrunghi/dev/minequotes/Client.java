@@ -11,7 +11,8 @@ import java.net.URLEncoder;
 
 public class Client {
 
-    private final String BASIC_URL = "http://178.238.238.85:8080/HttpServlet/HttpServlet?name=";
+    private final String BASIC_URL = "http://www.mhteam.bz.it:8080/HttpServlet/HttpServlet?name=";
+    //private final String BASIC_URL = "http://178.238.238.85:8080/HttpServlet/HttpServlet?name=";
     private AsyncHttpClient client;
 
     public Client() {
@@ -19,9 +20,9 @@ public class Client {
     }
 
 
-
     public void getUrl(String action, JsonHttpResponseHandler handler) {
 
         client.get(BASIC_URL + action, handler);
     }
+
 }

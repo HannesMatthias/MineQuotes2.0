@@ -1,5 +1,10 @@
 package login;
 
+import android.net.Uri;
+
+import com.rubrunghi.dev.minequotes.R;
+import com.squareup.picasso.Picasso;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,6 +20,7 @@ public class LoginProfiles {
     private String password;
     private String rankname;
     private String playerID;
+    private final String DEFAULTSKINURL_HEAD = "https://crafatar.com/renders/head/";
 
 
 
@@ -89,6 +95,11 @@ public class LoginProfiles {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getHead(int headsize) {
+        return DEFAULTSKINURL_HEAD + playerID + "?scale=" + headsize +"&overlay";
+
     }
 
 }
