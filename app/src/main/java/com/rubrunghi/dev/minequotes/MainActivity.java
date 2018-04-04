@@ -1,6 +1,8 @@
 package com.rubrunghi.dev.minequotes;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 
 
@@ -15,16 +17,31 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.squareup.picasso.Picasso;
+
+import chat.ChatFragment;
 import login.LoginActivity;
+import login.LoginProfiles;
+import player.LoadAllPlayersManager;
+import player.Player;
 import player.playerlist.PlayerListActivity;
+import rank.RankActivity;
+import rank.RankHandler;
+import requestqueue.PostActivity;
+import requestqueue.PostActivityOLD;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
-
-
+    public static RankHandler rankHandler;
+    LoginProfiles profile;
+    public static String uniquePlayerID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +59,25 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
+
+        profile = LoginActivity.loggedInUser;
+        uniquePlayerID = profile.getPlayerID();
+
+        View hView =  navigationView.getHeaderView(0);
+        hView.findViewById(R.id.profilename_menu);
+        TextView nav_user = (TextView)hView.findViewById(R.id.profilename_menu);
+        nav_user.setText(profile.getUsername());
+        ImageView image = hView.findViewById(R.id.profile_img);
+        Picasso.with(this).load(Uri.parse(profile.getHead(10))).error(R.mipmap.ic_launcher).into(image);
+        TextView nav_rank = (TextView) hView.findViewById(R.id.profile_rank);
+        nav_rank.setText("Rang: " + profile.getRankname());
+
+        rankHandler = new RankHandler();
+        rankHandler.getRanks("ranktop10");
+
     }
 
 
@@ -57,6 +93,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -64,25 +101,9 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_player) {
@@ -90,7 +111,26 @@ public class MainActivity extends AppCompatActivity
             FragmentManager fm = getSupportFragmentManager();
 
             fm.beginTransaction().addToBackStack("").replace(R.id.main, new PlayerListActivity()).commit();
-        }
+        }else if (id == R.id.nav_ranklist) {
+            if(rankHandler.getRanks().size() > 0) {
+                Log.e("Open", "RankList");
+                FragmentManager fm = getSupportFragmentManager();
+                fm.beginTransaction().addToBackStack("").replace(R.id.main, new RankActivity()).commit();
+            }else {
+                Toast.makeText(this, "Rangliste wird noch geladen...", Toast.LENGTH_SHORT).show();
+            }
+
+
+        }else if (id == R.id.chat) {
+                Log.e("Open", "RankList");
+                FragmentManager fm = getSupportFragmentManager();
+              //  fm.beginTransaction().addToBackStack("").replace(R.id.main, new ChatFragment()).commit();
+                fm.beginTransaction().addToBackStack("").replace(R.id.main, new PostActivity()).commit();
+            }
+
+
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

@@ -9,8 +9,8 @@
             android:id="@+id/nav_player"
             android:title="Spielerprofile" />
         <item
-            android:id="@+id/nav_manage"
-            android:title="Premium" />
+            android:id="@+id/chat"
+            android:title="Globaler Chat" />
 
 
         <item android:title="Adminbereich">

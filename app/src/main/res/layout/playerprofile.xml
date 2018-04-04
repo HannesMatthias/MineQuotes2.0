@@ -12,12 +12,12 @@
 
     <ImageView
         android:id="@+id/skin"
-        android:layout_width="120px"
-        android:layout_height="270px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="24dp"
-        android:layout_toEndOf="@+id/lb_profilename"
-        android:src="@mipmap/testskin"/>
+        android:src="@mipmap/ic_launcher"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:id="@+id/lb_profilename"
@@ -26,7 +26,7 @@
         android:layout_above="@+id/onlineCheck"
         android:layout_alignStart="@+id/lb_onlineCheck"
         android:layout_marginBottom="13dp"
-        android:text="Spielername:"
+        android:text="@string/playername_de"
         android:textSize="25sp" />
 
     <TextView

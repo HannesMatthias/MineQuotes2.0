@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "684231193092",
+    "firebase_url": "https://minequotes-182d9.firebaseio.com",
+    "project_id": "minequotes-182d9",
+    "storage_bucket": "minequotes-182d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:684231193092:android:228e1e9bbace7046",
+        "android_client_info": {
+          "package_name": "com.rubrunghi.dev.minequotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "684231193092-o5bichgatvkbc8d9u9hv9842uhsn3u41.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rubrunghi.dev.minequotes",
+            "certificate_hash": "3e2614d1e91ce88e5655966d71dec57b3884c049"
+          }
+        },
+        {
+          "client_id": "684231193092-ivsausliv8loatjvmstadl47pd0s5imf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAarcLLf2N2VcXE7q5QQnVh4HqgYWo5CGM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "684231193092-ivsausliv8loatjvmstadl47pd0s5imf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
