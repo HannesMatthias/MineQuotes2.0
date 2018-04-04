@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_ranklist"
+            android:icon="@drawable/ic_rank_icon"
             android:title="Rangliste" />
         <item
             android:id="@+id/nav_player"
+            android:icon="@drawable/ic_user_profile"
             android:title="Spielerprofile" />
         <item
             android:id="@+id/chat"
-            android:title="Globaler Chat" />
+            android:icon="@drawable/ic_globalchat_icon"
+            android:title="Globaler Chat"
+            />
 
 
         <item android:title="Adminbereich">
             <menu>
                 <item
                     android:id="@+id/nav_ban"
-
+                    android:icon="@drawable/ic_ban_icon"
                     android:title="Bannen | Entbannen" />
                 <item
                     android:id="@+id/nav_banlist"
-
                     android:title="Banliste" />
             </menu>
         </item>
