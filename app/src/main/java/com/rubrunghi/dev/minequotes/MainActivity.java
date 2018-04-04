@@ -128,9 +128,6 @@ public class MainActivity extends AppCompatActivity
                 fm.beginTransaction().addToBackStack("").replace(R.id.main, new PostActivity()).commit();
             }
 
-
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

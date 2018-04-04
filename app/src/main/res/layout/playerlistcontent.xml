@@ -7,7 +7,9 @@
     android:orientation="horizontal"
     >
 
-
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/playerListSkin"
         android:layout_width="wrap_content"
@@ -17,9 +19,11 @@
 
     <TextView
         android:id="@+id/playerListName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Playername"
+        android:layout_toEndOf="@+id/playerListSkin"
         android:layout_margin="10dp"/>
+</RelativeLayout>
 </LinearLayout>
