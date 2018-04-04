@@ -11,7 +11,9 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <ImageView
         android:id="@+id/profile_img"
         android:layout_width="wrap_content"
@@ -20,17 +22,23 @@
         app:srcCompat="@android:drawable/sym_def_app_icon" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/profilename_menu"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/profile_img"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Android Studio"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/profilename_menu"/>
+        android:text="player_name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/profile_rank"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-     />
-
+        android:layout_toRightOf="@+id/profilename_menu"
+        android:layout_below="@+id/profile_img"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:text="player_rank" />
+</RelativeLayout>
 </LinearLayout>
