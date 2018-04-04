@@ -43,10 +43,10 @@ public class LoginActivityImproved extends AppCompatActivity implements View.OnC
            loginCheck();
         }
     }
+
     public static LoginProfiles loggedInUser;
 
     public void loginCheck() {
-        Toast.makeText(this, "Button", Toast.LENGTH_SHORT).show();
         String username = user.getText().toString();
         String pw = passwd.getText().toString();
         handler.sendDataToServer(username, pw);
