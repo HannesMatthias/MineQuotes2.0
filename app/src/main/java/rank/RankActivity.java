@@ -57,7 +57,12 @@ public class RankActivity extends Fragment {
 
         arrPlayer = MainActivity.rankHandler.getRanks();
         getPlayerProfile();
-        Picasso.with(getContext()).load(Uri.parse(rankPlayer.getSkinUrlHead())).error(R.mipmap.ic_launcher).into(skinHead);
+        try {
+            Picasso.with(getContext()).load(Uri.parse(rankPlayer.getSkinUrlHead())).error(R.mipmap.ic_launcher).into(skinHead);
+        }catch (Exception e) {
+            Log.e("Error_on_loading_image", "Bild konnte nicht geladen werden!");
+        }
+
         playername.setText(rankPlayer.getPlayername());
         points.setText(String.valueOf(rankPlayer.getPunkte()));
         kd.setText(String.valueOf(rankPlayer.getKd()));

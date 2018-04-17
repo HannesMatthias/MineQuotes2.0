@@ -1,11 +1,10 @@
-package player.playerlist;
-
+package ban;
 
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -18,6 +17,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.rubrunghi.dev.minequotes.Client;
 import com.rubrunghi.dev.minequotes.R;
 
 import org.json.JSONArray;
@@ -27,49 +27,39 @@ import java.util.ArrayList;
 import cz.msebera.android.httpclient.Header;
 import player.LoadAllPlayersManager;
 import player.Player;
-import com.rubrunghi.dev.minequotes.Client;
 import player.PlayerProfileActivity;
+import player.playerlist.PlayerAdapter;
 
 /**
- * Created by Administrator on 28.02.2018.
+ * Created by Manfred on 16.04.2018.
  */
 
-public class PlayerListActivity extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class BanList extends Fragment {
 
-    private EditText searchField;
-    private ProgressBar progressBar;
-    private PlayerAdapter playerAdapter;
-    private ListView playerlist;
-    private Client client;
-    private SwipeRefreshLayout refresh;
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.playerlist, container, false);
-        super.onCreate(savedInstanceState);
 
-        refresh = (SwipeRefreshLayout) view.findViewById(R.id.swipe);
-        refresh.setOnRefreshListener(this);
+        private EditText searchField;
+        private ProgressBar progressBar;
+        private PlayerAdapter playerAdapter;
+        private ListView playerlist;
+        private Client client;
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.playerlist, container, false);
+            super.onCreate(savedInstanceState);
+            searchField = (EditText) view.findViewById(R.id.searchPlayer);
+            progressBar = (ProgressBar) view.findViewById(R.id.playerListLoadingBar);
+            client = new Client();
+            playerlist = (ListView) view.findViewById(R.id.playerlistView);
+            setupListListener();
+            ArrayList<Player> players = new ArrayList<>();
+            playerAdapter = new PlayerAdapter(getActivity(), players);
 
-        searchField = (EditText) view.findViewById(R.id.searchPlayer);
-        progressBar = (ProgressBar) view.findViewById(R.id.playerListLoadingBar);
-        client = new Client();
-        playerlist = (ListView) view.findViewById(R.id.playerlistView);
-        setupListListener();
-        ArrayList<Player> players = new ArrayList<>();
-        playerAdapter = new PlayerAdapter(getActivity(), players);
+            playerlist.setAdapter(playerAdapter);
+            fetchPlayerData("playerdata");
 
-        playerlist.setAdapter(playerAdapter);
-        fetchPlayerData("playerdata");
 
-        return view;
-    }
-
-    @Override
-    public void onRefresh() {
-        refresh.setRefreshing(false);
-        fetchPlayerData("playerdata");
-    }
-
+            return view;
+        }
     private void fetchPlayerData(String action) {
         progressBar.setIndeterminate(true);
         client.getUrl(action, new JsonHttpResponseHandler() {
@@ -90,7 +80,7 @@ public class PlayerListActivity extends Fragment implements SwipeRefreshLayout.O
                     playerAdapter.notifyDataSetChanged();
                     progressBar.setIndeterminate(false);
 
-              //      Log.e("1","" + LoadAllPlayersManager.players.size());
+                    //      Log.e("1","" + LoadAllPlayersManager.players.size());
                 }
             }
 
@@ -128,20 +118,20 @@ public class PlayerListActivity extends Fragment implements SwipeRefreshLayout.O
             public void afterTextChanged(Editable s) {
 
 
-                       ArrayList<Player> filteredPlayers = LoadAllPlayersManager.filterPlayers(s.toString().toLowerCase());
+                ArrayList<Player> filteredPlayers = LoadAllPlayersManager.filterPlayers(s.toString().toLowerCase());
 
-                       loadList(filteredPlayers);
-                       playerlist.post(new Runnable() {
-                           @Override
-                           public void run() {
-                               playerlist.smoothScrollToPosition(0);
-                           }
-                       });
+                loadList(filteredPlayers);
+                playerlist.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        playerlist.smoothScrollToPosition(0);
+                    }
+                });
 
-                   //    break;
-                 //  }
+                //    break;
+                //  }
 
-               // }
+                // }
                 if(isEmpty(searchField)) {
 
                     refreshList();
@@ -182,4 +172,6 @@ public class PlayerListActivity extends Fragment implements SwipeRefreshLayout.O
         return true;
     }
 
-}
+
+
+    }

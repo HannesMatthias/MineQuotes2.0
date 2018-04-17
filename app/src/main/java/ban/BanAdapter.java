@@ -1,9 +1,8 @@
-package player.playerlist;
+package ban;
 
 import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +13,11 @@ import android.widget.TextView;
 import com.rubrunghi.dev.minequotes.R;
 import com.squareup.picasso.Picasso;
 
-
 import java.util.ArrayList;
 
 import player.Player;
 
-public class PlayerAdapter extends ArrayAdapter<Player> {
+public class BanAdapter extends ArrayAdapter<Player> {
 
     private static class ViewHolder {
         public ImageView skin;
@@ -27,7 +25,7 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
 
     }
 
-    public PlayerAdapter(@NonNull Context context, ArrayList<Player> player) {
+    public BanAdapter(@NonNull Context context, ArrayList<Player> player) {
         super(context, 0, player);
     }
 

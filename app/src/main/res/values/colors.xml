@@ -6,5 +6,6 @@
     <color name="brightOrange">#f4a31e</color>
     <color name="darkOrange">#eb532c</color>
     <color name="white">#FFF</color>
+    <color name="red">#c41300</color>
 
 </resources>

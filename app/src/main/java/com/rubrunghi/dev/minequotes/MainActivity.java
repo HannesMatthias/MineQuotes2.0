@@ -1,13 +1,14 @@
 package com.rubrunghi.dev.minequotes;
 
-import android.content.Intent;
-import android.graphics.Color;
+
+
 import android.net.Uri;
 import android.os.Bundle;
 
 
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -25,19 +26,21 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import ban.BanList;
 import chat.ChatFragment;
 import login.LoginActivity;
 import login.LoginProfiles;
-import player.LoadAllPlayersManager;
-import player.Player;
+
 import player.playerlist.PlayerListActivity;
 import rank.RankActivity;
 import rank.RankHandler;
-import requestqueue.PostActivity;
-import requestqueue.PostActivityOLD;
+
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
+
+
 
     public static RankHandler rankHandler;
     LoginProfiles profile;
@@ -48,7 +51,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -125,8 +127,13 @@ public class MainActivity extends AppCompatActivity
                 Log.e("Open", "RankList");
                 FragmentManager fm = getSupportFragmentManager();
               //  fm.beginTransaction().addToBackStack("").replace(R.id.main, new ChatFragment()).commit();
-                fm.beginTransaction().addToBackStack("").replace(R.id.main, new PostActivity()).commit();
-            }
+                fm.beginTransaction().addToBackStack("").replace(R.id.main, new ChatFragment()).commit();
+        }else if (id == R.id.nav_ban) {
+            Log.e("Open", "RankList");
+            FragmentManager fm = getSupportFragmentManager();
+            //  fm.beginTransaction().addToBackStack("").replace(R.id.main, new ChatFragment()).commit();
+            fm.beginTransaction().addToBackStack("").replace(R.id.main, new BanList()).commit();
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

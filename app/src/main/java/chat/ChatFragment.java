@@ -74,11 +74,12 @@ public class ChatFragment extends Fragment {
                 Toast.makeText(getContext(), "Wilkommen!", Toast.LENGTH_SHORT).show();
                 chat();
             }else {
-                Snackbar.make(layout, "Error", Snackbar.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Error", Toast.LENGTH_LONG).show();
                 getActivity().finish();
             }
         }
     }
+
     public void chat() {
         ListView listOfMessage = (ListView) view.findViewById(R.id.messageList);
         adapter = new FirebaseListAdapter<Message>(getActivity(),Message.class,R.layout.list_item,FirebaseDatabase.getInstance().getReference())

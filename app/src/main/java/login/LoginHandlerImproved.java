@@ -43,7 +43,7 @@ public class LoginHandlerImproved {
 
             @Override
             protected String doInBackground(Void... params) {
-                Log.e("BACKGROUND","DRINNEN");
+
 
                 return getServerResponse(json);
             }
