@@ -124,7 +124,13 @@
         android:layout_alignBottom="@+id/lb_lastTimeOnline"
         android:layout_alignParentEnd="true"
         android:layout_toEndOf="@+id/skin"
-        android:text="30.12.9999"
+        android:text="12.12.2012"
         android:textSize="25sp" />
-
+    <Button
+        android:id="@+id/playerBan_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Spieler Bannen"
+        android:layout_below="@+id/lb_lastTimeOnline"
+        android:visibility=""/>
 </RelativeLayout>
