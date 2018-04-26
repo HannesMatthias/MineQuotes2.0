@@ -7,7 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:layout_editor_absoluteY="81dp"
 
     >
 
@@ -15,8 +14,10 @@
         android:id="@+id/skin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@id/lb_profilename"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="20dp"
         android:src="@mipmap/ic_launcher"
         android:layout_centerHorizontal="true"/>
 
@@ -126,11 +127,19 @@
         android:layout_toEndOf="@+id/skin"
         android:text="12.12.2012"
         android:textSize="25sp" />
+
     <Button
-        android:id="@+id/playerBan_btn"
-        android:layout_width="match_parent"
+        android:id="@+id/profile_chat"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Spieler Bannen"
         android:layout_below="@+id/lb_lastTimeOnline"
-        android:visibility=""/>
+        android:layout_marginTop="56dp"
+        android:layout_toEndOf="@+id/lb_profilename"
+        android:background="@color/brightOrange"
+        android:letterSpacing="1"
+        android:padding="5dp"
+        android:text="Chat öffnen"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>

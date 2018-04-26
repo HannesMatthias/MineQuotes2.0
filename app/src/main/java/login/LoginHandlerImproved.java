@@ -22,6 +22,7 @@ import cz.msebera.android.httpclient.client.methods.HttpPost;
 import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.impl.client.BasicResponseHandler;
 import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
+import cz.msebera.android.httpclient.params.HttpParams;
 import cz.msebera.android.httpclient.protocol.HTTP;
 
 
@@ -89,7 +90,10 @@ public class LoginHandlerImproved {
             // post.setHeader("Content-type", "application/json");
             post.setHeader("Content-type", "application/json; charset=UTF-8");
             post.setHeader("Accept", "application/json");
+
             post.setEntity(entity);
+
+
             //To send the data
             DefaultHttpClient client = new DefaultHttpClient();
             BasicResponseHandler handler = new BasicResponseHandler();
@@ -104,12 +108,13 @@ public class LoginHandlerImproved {
             e.printStackTrace();
         }
 
-        return "Error, Server antwortet nicht...";
+        return "[LOGIN] Error, Server antwortet nicht...";
     }
     public String formatDataToJson(String username, String password) {
         JSONObject mylogin = new JSONObject();
 
         try {
+            mylogin.put("post", "login");
             mylogin.put("username", username);
             mylogin.put("password", password);
             return mylogin.toString();

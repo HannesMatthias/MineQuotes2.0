@@ -5,10 +5,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,13 +18,15 @@ import android.widget.TextView;
 import com.rubrunghi.dev.minequotes.R;
 import com.squareup.picasso.Picasso;
 
+import chat.ChatActivity;
+
 
 /**
  *
  * Created by Administrator on 28.02.2018.
  */
 
-public class PlayerProfileActivity extends Fragment {
+public class PlayerProfileActivity extends Fragment implements View.OnClickListener {
 
     Player p;
     private ImageView skin;
@@ -32,6 +36,7 @@ public class PlayerProfileActivity extends Fragment {
     private TextView playtime_m;
     private TextView lastTimeOnline;
     private ImageView onlinestatus;
+    private Button chatButton;
 
 
 
@@ -46,6 +51,8 @@ public class PlayerProfileActivity extends Fragment {
         playtime_m = (TextView) view.findViewById(R.id.playtime_m);
         lastTimeOnline =  (TextView) view.findViewById(R.id.lastTimeOnline);
         onlinestatus = (ImageView) view.findViewById(R.id.onlineCheck);
+        chatButton = (Button) view.findViewById(R.id.profile_chat);
+        chatButton.setOnClickListener(this);
         searchProfile();
         Picasso.with(getContext()).load(Uri.parse(p.getSkinUrlBody())).error(R.mipmap.ic_launcher).into(skin);
         playername.setText(p.getPlayername());
@@ -58,6 +65,18 @@ public class PlayerProfileActivity extends Fragment {
         divideTime();
 
         return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(chatButton == view) {
+            ChatActivity chat = new ChatActivity();
+            Bundle b = new Bundle();
+            b.putString("empfaenger", p.getUuid());
+            chat.setArguments(b);
+            FragmentManager fm = getActivity().getSupportFragmentManager();
+            fm.beginTransaction().addToBackStack("").replace(R.id.main, chat).commit();
+        }
     }
 
     public void searchProfile() {

@@ -50,6 +50,8 @@ public class LoginActivityImproved extends AppCompatActivity implements View.OnC
     public void loginCheck() {
         String username = user.getText().toString();
         String pw = passwd.getText().toString();
+//        String username = "Hannes";
+//        String pw = "123";
         handler.sendDataToServer(username, pw);
 
     }

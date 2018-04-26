@@ -33,10 +33,20 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.loopj.android:android-async-http:1.4.9'
-    compile 'com.firebaseui:firebase-ui:0.6.2'
-    compile 'com.google.firebase:firebase-messaging:9.8.0'
+
+
+
+
     testCompile 'junit:junit:4.12'
 }
 
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+dependencies { //Für die Bubbles im Chat
+    compile 'com.github.lguipeng:BubbleView:1.0.1'
+}
 
 apply plugin: 'com.google.gms.google-services'

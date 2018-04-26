@@ -1,14 +1,12 @@
 package com.rubrunghi.dev.minequotes;
 
 
-
 import android.net.Uri;
 import android.os.Bundle;
 
 
 import android.support.v4.app.FragmentManager;
 
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -27,7 +25,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import ban.BanList;
-import chat.ChatFragment;
+import chat.ChatActivity;
 import login.LoginActivity;
 import login.LoginProfiles;
 
@@ -36,15 +34,14 @@ import rank.RankActivity;
 import rank.RankHandler;
 
 
-
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
-
+        implements NavigationView.OnNavigationItemSelectedListener {
 
 
     public static RankHandler rankHandler;
     LoginProfiles profile;
     public static String uniquePlayerID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,14 +60,12 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-
-
         profile = LoginActivity.loggedInUser;
         uniquePlayerID = profile.getPlayerID();
 
-        View hView =  navigationView.getHeaderView(0);
+        View hView = navigationView.getHeaderView(0);
         hView.findViewById(R.id.profilename_menu);
-        TextView nav_user = (TextView)hView.findViewById(R.id.profilename_menu);
+        TextView nav_user = (TextView) hView.findViewById(R.id.profilename_menu);
         nav_user.setText(profile.getUsername());
         ImageView image = hView.findViewById(R.id.profile_img);
         Picasso.with(this).load(Uri.parse(profile.getHead(10))).error(R.mipmap.ic_launcher).into(image);
@@ -81,8 +76,6 @@ public class MainActivity extends AppCompatActivity
         rankHandler.getRanks("ranktop10");
 
     }
-
-
 
 
     @Override
@@ -113,25 +106,23 @@ public class MainActivity extends AppCompatActivity
             FragmentManager fm = getSupportFragmentManager();
 
             fm.beginTransaction().addToBackStack("").replace(R.id.main, new PlayerListActivity()).commit();
-        }else if (id == R.id.nav_ranklist) {
-            if(rankHandler.getRanks().size() > 0) {
+        } else if (id == R.id.nav_ranklist) {
+            if (rankHandler.getRanks().size() > 0) {
                 Log.e("Open", "RankList");
                 FragmentManager fm = getSupportFragmentManager();
                 fm.beginTransaction().addToBackStack("").replace(R.id.main, new RankActivity()).commit();
-            }else {
+            } else {
                 Toast.makeText(this, "Rangliste wird noch geladen...", Toast.LENGTH_SHORT).show();
             }
 
 
-        }else if (id == R.id.chat) {
-                Log.e("Open", "RankList");
-                FragmentManager fm = getSupportFragmentManager();
-              //  fm.beginTransaction().addToBackStack("").replace(R.id.main, new ChatFragment()).commit();
-                fm.beginTransaction().addToBackStack("").replace(R.id.main, new ChatFragment()).commit();
-        }else if (id == R.id.nav_ban) {
-            Log.e("Open", "RankList");
+        } else if (id == R.id.chat) {
+            Log.e("Open", "Chat");
             FragmentManager fm = getSupportFragmentManager();
-            //  fm.beginTransaction().addToBackStack("").replace(R.id.main, new ChatFragment()).commit();
+            fm.beginTransaction().addToBackStack("").replace(R.id.main, new ChatActivity()).commit();
+        } else if (id == R.id.nav_ban) {
+            Log.e("Open", "Ban");
+            FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().addToBackStack("").replace(R.id.main, new BanList()).commit();
         }
 
