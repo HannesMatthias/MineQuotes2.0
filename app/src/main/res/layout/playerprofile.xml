@@ -132,14 +132,12 @@
         android:id="@+id/profile_chat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lastTimeOnline"
-        android:layout_marginTop="10dp"
-        android:layout_toEndOf="@+id/lb_profilename"
+        android:layout_alignBottom="@+id/lastTimeOnline"
+        android:layout_toStartOf="@+id/profilename"
         android:background="@color/brightOrange"
         android:letterSpacing="1"
         android:padding="5dp"
         android:text="Chat öffnen"
-        android:textSize="15sp"
-        android:layout_centerHorizontal="true"/>
+        android:textSize="15sp" />
 
 </RelativeLayout>

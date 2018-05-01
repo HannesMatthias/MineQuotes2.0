@@ -68,8 +68,9 @@ public class ChatRoom extends Fragment implements SwipeRefreshLayout.OnRefreshLi
     }
     @Override
     public void onRefresh() {
-        layout.setRefreshing(false);
         fetchFriends();
+        layout.setRefreshing(false);
+
     }
     private void fetchFriends() {
         progressBar.setIndeterminate(true);

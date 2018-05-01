@@ -50,12 +50,12 @@ public class ListenMessages extends AsyncTask<String, Void, String> {
             result = getMessageFromServer(message);
             Log.e("resultChat", result);
             if(result.contains("true")) {
-                Log.e("TRUEEEE", result);
+                Log.e("TRUE", result);
                 listening = false;
             }
 
             try {
-                Thread.sleep(2000);
+                Thread.sleep(2500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

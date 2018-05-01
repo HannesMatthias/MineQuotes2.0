@@ -27,6 +27,9 @@
     <string name="ranklist">Rangliste</string>
 
 
+    <!--ChatActivity-->
+
+    <string name="friend_add">Freund hinzugefügt</string>
     <!--Texte-->
     <string name="do_logout">Sie wurden ausgeloggt.</string>
 </resources>

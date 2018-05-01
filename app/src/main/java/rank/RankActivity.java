@@ -50,7 +50,6 @@ public class RankActivity extends Fragment {
         ranklist = (ListView) view.findViewById(R.id.listView);
 
 
-
         arrPlayer = MainActivity.rankHandler.getRanks();
         getPlayerProfile();
         try {
@@ -58,10 +57,10 @@ public class RankActivity extends Fragment {
         }catch (Exception e) {
             Log.e("Error_on_loading_image", "Bild konnte nicht geladen werden!");
         }
-
+        double kd = Math.round(rankPlayer.getKd() * 10.0) / 10.0;
         playername.setText(rankPlayer.getPlayername());
         points.setText(String.valueOf(rankPlayer.getPunkte()));
-        kd.setText(String.valueOf(rankPlayer.getKd()));
+        this.kd.setText(String.valueOf(kd));
         rank.setText("#" + String.valueOf(rankPlayer.getRang()));
 
         adapter = new RankAdapter(getActivity(), arrPlayer);

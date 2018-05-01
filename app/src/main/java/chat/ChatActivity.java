@@ -60,7 +60,7 @@ public class ChatActivity extends Fragment implements SendMessage.AsyncResponse,
         view = inflater.inflate(R.layout.fragment_chat, container, false);
         layout = (RelativeLayout) view.findViewById(R.id.chatActivity);
 
-        executor = Executors.newFixedThreadPool(99999);
+        executor = Executors.newFixedThreadPool(3);
 
         adapter = new ChatAdapter(getContext()); //Wenns nicht geht, dann Constructor ändern!
         send = (FloatingActionButton) view.findViewById(R.id.send);
@@ -95,7 +95,7 @@ public class ChatActivity extends Fragment implements SendMessage.AsyncResponse,
     }
     @Override
     public void getMessageResponse(String output) {
-        Toast.makeText(getActivity(), "MessagesList " + output, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getActivity(), "MessagesList " + output, Toast.LENGTH_SHORT).show();
         addMessagesToAdapter(output);
 
         if(listenMessages == null) {
@@ -122,12 +122,12 @@ public class ChatActivity extends Fragment implements SendMessage.AsyncResponse,
             message.setSenderID(MainActivity.uniquePlayerID);
             message.setMessageText(input.getText().toString());
             message.setEmpfängerID(empfängerID);
-
+            input.setText("");
             handler = new SendMessage(this, message);
         }else if (addUser == view) {
             Client c = new Client();
             c.setfriendsURL(MainActivity.uniquePlayerID, empfängerID, empfänger, new JsonHttpResponseHandler());
-            Toast.makeText(getActivity(), "Freund hinzugefügt", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.friend_add), Toast.LENGTH_SHORT).show();
         }
 
     }
