@@ -8,11 +8,8 @@
     android:orientation="horizontal" >
 
 
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.8">
-    </RelativeLayout>
+
+
 
     <RelativeLayout
         android:layout_width="0dp"
@@ -20,7 +17,7 @@
         android:layout_weight="1">
 
         <TextView
-            android:id="@+id/message_sender"
+            android:id="@+id/message_sender2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
@@ -32,19 +29,19 @@
             android:textSize="20dp"
             android:textStyle="bold" />
         <TextView
-            android:id="@+id/message_date"
+            android:id="@+id/message_date2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/message_chat"
+            android:layout_below="@+id/message_chat2"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="2018-07-05 20:00:05"
             android:textSize="15dp" />
 
         <com.github.library.bubbleview.BubbleTextView
-            android:id="@+id/message_chat"
+            android:id="@+id/message_chat2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

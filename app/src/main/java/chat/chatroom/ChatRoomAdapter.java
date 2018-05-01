@@ -1,4 +1,4 @@
-package ban;
+package chat.chatroom;
 
 import android.content.Context;
 import android.net.Uri;
@@ -10,45 +10,52 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.library.bubbleview.BubbleTextView;
+import com.rubrunghi.dev.minequotes.Client;
+import com.rubrunghi.dev.minequotes.MainActivity;
 import com.rubrunghi.dev.minequotes.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import player.Player;
+import chat.Message;
+import chat.friends.Friends;
+import rank.RankHandler;
 
-public class BanAdapter extends ArrayAdapter<Player> {
+
+public class ChatRoomAdapter extends ArrayAdapter<Friends> {
 
     private static class ViewHolder {
         public ImageView skin;
-        public TextView playername;
+        public TextView name;
 
     }
 
-    public BanAdapter(@NonNull Context context, ArrayList<Player> player) {
-        super(context, 0, player);
+    public ChatRoomAdapter(@NonNull Context context) {
+        super(context, 0);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
-        Player player = getItem(position);
+        Friends friends = getItem(position);
 
         ViewHolder viewHolder;
         if (convertView == null) {
             viewHolder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.playerlistcontent, viewGroup, false);
-            viewHolder.skin = convertView.findViewById(R.id.playerListSkin);
-            viewHolder.playername = convertView.findViewById(R.id.playerListName);
+            convertView = inflater.inflate(R.layout.chat_room_item, viewGroup, false);
+            viewHolder.skin = convertView.findViewById(R.id.chat_skin);
+            viewHolder.name = convertView.findViewById(R.id.chat_friend);
 
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.playername.setText(player.getPlayername());
 
-        Picasso.with(getContext()).load(Uri.parse(player.getSkinUrlHead())).error(R.mipmap.ic_launcher).into(viewHolder.skin);
+        Picasso.with(getContext()).load(Uri.parse(friends.getHeadUrl())).error(R.mipmap.ic_launcher).into(viewHolder.skin);
+        viewHolder.name.setText(friends.getFriendName());
+
 
 
         return convertView;

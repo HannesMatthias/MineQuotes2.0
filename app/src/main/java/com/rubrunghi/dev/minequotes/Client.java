@@ -26,5 +26,11 @@ public class Client {
 
         client.get(BASIC_URL + action, handler);
     }
-
+    public void setfriendsURL(String sender, String friendID, String friend, JsonHttpResponseHandler handler) {
+        client.get(BASIC_URL + "friends&senderID=" +sender + "&friendID=" + friendID+ "&friend=" + friend, handler);
+        client.get(BASIC_URL + "friends&senderID=" +sender + "&friendID=" + friendID+ "&friend=" + friend, handler);
+    }
+    public void getfriendsURL(String sender, JsonHttpResponseHandler handler) {
+        client.get(BASIC_URL + "getFriends&senderID=" + sender, handler);
+    }
 }

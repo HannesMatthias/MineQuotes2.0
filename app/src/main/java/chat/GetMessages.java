@@ -27,7 +27,7 @@ public class GetMessages extends AsyncTask<String, Void, String> {
     public GetMessages(ChatActivity activity) {
         this.activity = activity;
         messageTaskResponse = activity;
-        Toast.makeText(activity.getActivity(), "NeuIn", Toast.LENGTH_SHORT).show();
+
         String json = formatMessageToJson();
         executeOnExecutor(ChatActivity.executor, json);
     }
@@ -40,6 +40,7 @@ public class GetMessages extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... json) {
+
         return getMessageFromServer(json[0]);
 
     }

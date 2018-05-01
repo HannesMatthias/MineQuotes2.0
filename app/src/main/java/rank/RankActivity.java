@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +19,6 @@ import com.rubrunghi.dev.minequotes.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-
-import login.LoginHandler;
-import player.Player;
 
 
 public class RankActivity extends Fragment {
@@ -51,7 +47,7 @@ public class RankActivity extends Fragment {
         points = (TextView) view.findViewById(R.id.punkte);
         kd = (TextView) view.findViewById(R.id.kd);
         rank = (TextView) view.findViewById(R.id.rang);
-        ranklist = (ListView) view.findViewById(R.id.playerlistView);
+        ranklist = (ListView) view.findViewById(R.id.listView);
 
 
 
@@ -76,7 +72,6 @@ public class RankActivity extends Fragment {
 
 
     }
-
 
     public void getPlayerProfile() {
         for(RankPlayer profiles : arrPlayer) {

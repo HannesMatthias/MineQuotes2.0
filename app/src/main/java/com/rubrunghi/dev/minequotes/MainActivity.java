@@ -1,6 +1,10 @@
 package com.rubrunghi.dev.minequotes;
 
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.icu.text.UnicodeSetSpanner;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -24,9 +28,11 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import ban.BanList;
+
 import chat.ChatActivity;
+import chat.chatroom.ChatRoom;
 import login.LoginActivity;
+import login.LoginActivityImproved;
 import login.LoginProfiles;
 
 import player.playerlist.PlayerListActivity;
@@ -38,8 +44,9 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
+
     public static RankHandler rankHandler;
-    LoginProfiles profile;
+    public static LoginProfiles profile;
     public static String uniquePlayerID;
 
     @Override
@@ -96,6 +103,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    ChatRoom rooms = new ChatRoom();
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -105,12 +113,12 @@ public class MainActivity extends AppCompatActivity
             Log.e("Open", "PlayerList");
             FragmentManager fm = getSupportFragmentManager();
 
-            fm.beginTransaction().addToBackStack("").replace(R.id.main, new PlayerListActivity()).commit();
+            fm.beginTransaction().addToBackStack("playerlist").replace(R.id.main, new PlayerListActivity()).commit();
         } else if (id == R.id.nav_ranklist) {
             if (rankHandler.getRanks().size() > 0) {
                 Log.e("Open", "RankList");
                 FragmentManager fm = getSupportFragmentManager();
-                fm.beginTransaction().addToBackStack("").replace(R.id.main, new RankActivity()).commit();
+                fm.beginTransaction().addToBackStack("rank").replace(R.id.main, new RankActivity()).commit();
             } else {
                 Toast.makeText(this, "Rangliste wird noch geladen...", Toast.LENGTH_SHORT).show();
             }
@@ -119,11 +127,13 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.chat) {
             Log.e("Open", "Chat");
             FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().addToBackStack("").replace(R.id.main, new ChatActivity()).commit();
-        } else if (id == R.id.nav_ban) {
-            Log.e("Open", "Ban");
-            FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().addToBackStack("").replace(R.id.main, new BanList()).commit();
+            fm.beginTransaction().addToBackStack("chat").replace(R.id.main, rooms).commit();
+        } else if (id == R.id.nav_logout) {
+            Log.e("Open", "Logout");
+            SharedPreferences preferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+            LoginActivityImproved.eraseCredentials(preferences.edit());
+            Toast.makeText(this, getString(R.string.do_logout), Toast.LENGTH_SHORT).show();
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

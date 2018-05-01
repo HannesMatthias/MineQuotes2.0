@@ -7,27 +7,24 @@
         <item
             android:id="@+id/nav_ranklist"
             android:icon="@drawable/ic_rank_icon"
-            android:title="Rangliste" />
+            android:title="@string/ranklist" />
         <item
             android:id="@+id/nav_player"
             android:icon="@drawable/ic_user_profile"
-            android:title="Spielerprofile" />
+            android:title="@string/spielerprofile" />
         <item
             android:id="@+id/chat"
             android:icon="@drawable/ic_globalchat_icon"
-            android:title="Globaler Chat"
+            android:title="@string/global_chat"
             />
 
-
-        <item android:title="Adminbereich">
+        <item android:title="Profil">
             <menu>
                 <item
-                    android:id="@+id/nav_ban"
-                    android:icon="@drawable/ic_ban_icon"
-                    android:title="Bannen | Entbannen" />
-                <item
-                    android:id="@+id/nav_banlist"
-                    android:title="Banliste" />
+                    android:id="@+id/nav_logout"
+                    android:icon="@mipmap/logout"
+                    android:title="@string/logout" />
+
             </menu>
         </item>
 

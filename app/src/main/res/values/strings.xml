@@ -5,10 +5,28 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-
-    <string name="playername_de">Spielername</string>
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+
+    <string name="playername">Spielername</string>
+
+
+
+    <string name="txt_user">Benutzername</string>
+    <string name="txt_pw">Passwort</string>
+    <string name="autologin">Logindaten speichern</string>
+    <string name="btn_login">Einloggen</string>
+
+
+    <!--Menu-->
+
+    <string name="logout">Ausloggen</string>
+    <string name="global_chat">Globaler Chat</string>
+    <string name="spielerprofile">Spielerprofile</string>
+    <string name="ranklist">Rangliste</string>
+
+
+    <!--Texte-->
+    <string name="do_logout">Sie wurden ausgeloggt.</string>
 </resources>

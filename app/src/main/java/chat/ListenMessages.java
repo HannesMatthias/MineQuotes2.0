@@ -109,7 +109,6 @@ public class ListenMessages extends AsyncTask<String, Void, String> {
             askMessage.put("post", "chat_askMessages");
             askMessage.put("senderID", MainActivity.uniquePlayerID);
             askMessage.put("empfaengerID", activity.getEmpfängerID());
-
             askMessage.put("lastMessage", Integer.parseInt(activity.getNewestMessageID()));
 
             return askMessage.toString();

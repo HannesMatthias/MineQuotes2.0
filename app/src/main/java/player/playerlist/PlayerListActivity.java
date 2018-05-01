@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -30,9 +31,6 @@ import player.Player;
 import com.rubrunghi.dev.minequotes.Client;
 import player.PlayerProfileActivity;
 
-/**
- * Created by Administrator on 28.02.2018.
- */
 
 public class PlayerListActivity extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -47,13 +45,13 @@ public class PlayerListActivity extends Fragment implements SwipeRefreshLayout.O
         View view = inflater.inflate(R.layout.playerlist, container, false);
         super.onCreate(savedInstanceState);
 
-        refresh = (SwipeRefreshLayout) view.findViewById(R.id.swipe);
+        refresh = (SwipeRefreshLayout) view.findViewById(R.id.list_items);
         refresh.setOnRefreshListener(this);
 
-        searchField = (EditText) view.findViewById(R.id.searchPlayer);
-        progressBar = (ProgressBar) view.findViewById(R.id.playerListLoadingBar);
+        searchField = (EditText) view.findViewById(R.id.searchBox);
+        progressBar = (ProgressBar) view.findViewById(R.id.loadingBar);
         client = new Client();
-        playerlist = (ListView) view.findViewById(R.id.playerlistView);
+        playerlist = (ListView) view.findViewById(R.id.listView);
         setupListListener();
         ArrayList<Player> players = new ArrayList<>();
         playerAdapter = new PlayerAdapter(getActivity(), players);
@@ -127,7 +125,6 @@ public class PlayerListActivity extends Fragment implements SwipeRefreshLayout.O
 
             public void afterTextChanged(Editable s) {
 
-
                        ArrayList<Player> filteredPlayers = LoadAllPlayersManager.filterPlayers(s.toString().toLowerCase());
 
                        loadList(filteredPlayers);
@@ -138,21 +135,29 @@ public class PlayerListActivity extends Fragment implements SwipeRefreshLayout.O
                            }
                        });
 
-                   //    break;
-                 //  }
-
-               // }
                 if(isEmpty(searchField)) {
 
                     refreshList();
                 }
-
 
             }
 
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        });
+        playerlist.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView listView, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                int topRowVerticalPosition = (listView == null || listView.getChildCount() == 0) ?
+                        0 : playerlist.getChildAt(0).getTop();
+                refresh.setEnabled((topRowVerticalPosition >= 0));
+            }
         });
     }
 

@@ -2,8 +2,10 @@ package chat;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,8 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.rubrunghi.dev.minequotes.Client;
 import com.rubrunghi.dev.minequotes.MainActivity;
 import com.rubrunghi.dev.minequotes.R;
 
@@ -27,22 +31,25 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import chat.adapter.ChatAdapter;
+import cz.msebera.android.httpclient.Header;
 import player.LoadAllPlayersManager;
 import player.Player;
 
 
-public class ChatActivity extends Fragment implements SendMessage.AsyncResponse, GetMessages.AsyncResponse, ListenMessages.AsyncResponse, View.OnClickListener  {
+public class ChatActivity extends Fragment implements SendMessage.AsyncResponse, GetMessages.AsyncResponse, ListenMessages.AsyncResponse, View.OnClickListener {
 
     ListenMessages listenMessages;
     SendMessage handler;
     GetMessages getMessagesTask;
     ChatAdapter adapter;
-    ImageButton send;
+    FloatingActionButton send;
+    FloatingActionButton addUser;
     RelativeLayout layout;
     EditText input;
     View view;
     ListView chatView;
     private String empfängerID;
+    private String empfänger;
     public static ExecutorService executor;
 
 
@@ -56,8 +63,10 @@ public class ChatActivity extends Fragment implements SendMessage.AsyncResponse,
         executor = Executors.newFixedThreadPool(99999);
 
         adapter = new ChatAdapter(getContext()); //Wenns nicht geht, dann Constructor ändern!
-        send = (ImageButton) view.findViewById(R.id.send);
+        send = (FloatingActionButton) view.findViewById(R.id.send);
+        addUser = (FloatingActionButton) view.findViewById(R.id.addFriend);
         send.setOnClickListener(this);
+        addUser.setOnClickListener(this);
         input = view.findViewById(R.id.input);
 
         chatView = view.findViewById(R.id.messageList);
@@ -68,22 +77,21 @@ public class ChatActivity extends Fragment implements SendMessage.AsyncResponse,
             Toast.makeText(getActivity(), "Empfänger wurde nicht gefunden!", Toast.LENGTH_SHORT).show();
             return null;
         }
+        if (i.getString("name") != null) {
+            empfänger = i.getString("name");
+        }
         getMessagesTask = new GetMessages(this);
-
-
         chatView.setAdapter(adapter);
-
 
         return view;
     }
+
 
     @Override
     public void getSendResponse(String output) {
         //Toast.makeText(getActivity(), "out " + output, Toast.LENGTH_SHORT).show();
 
         addMessagesToAdapter(output);
-
-
     }
     @Override
     public void getMessageResponse(String output) {
@@ -99,7 +107,7 @@ public class ChatActivity extends Fragment implements SendMessage.AsyncResponse,
     public void foundNewMessages(String output) {
 
         if(output.contains("true")) {
-            Toast.makeText(getActivity(), "Neu!", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getActivity(), "Neu!", Toast.LENGTH_SHORT).show();
             getMessagesTask = new GetMessages(this);
 
             listenMessages = new ListenMessages(this);
@@ -109,15 +117,19 @@ public class ChatActivity extends Fragment implements SendMessage.AsyncResponse,
     @Override
     public void onClick(View view) {
         if(send == view) {
-            Toast.makeText(getActivity(), "Sende Nachricht....", Toast.LENGTH_SHORT).show();
+        //    Toast.makeText(getActivity(), "Sende Nachricht....", Toast.LENGTH_SHORT).show();
             Message message = new Message();
             message.setSenderID(MainActivity.uniquePlayerID);
             message.setMessageText(input.getText().toString());
             message.setEmpfängerID(empfängerID);
+
             handler = new SendMessage(this, message);
-
-
+        }else if (addUser == view) {
+            Client c = new Client();
+            c.setfriendsURL(MainActivity.uniquePlayerID, empfängerID, empfänger, new JsonHttpResponseHandler());
+            Toast.makeText(getActivity(), "Freund hinzugefügt", Toast.LENGTH_SHORT).show();
         }
+
     }
     ArrayList<Message> messages;
     public void addMessagesToAdapter(String output) {
@@ -137,6 +149,19 @@ public class ChatActivity extends Fragment implements SendMessage.AsyncResponse,
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+    }
+
+
+
+    @Override
+    public boolean getUserVisibleHint() {
+
+        if(!getUserVisibleHint()) {
+            executor.shutdown();
+            Log.e("Thread", "Offline");
+        }
+        return super.getUserVisibleHint();
 
     }
 

@@ -15,16 +15,12 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.rubrunghi.dev.minequotes.MainActivity;
 import com.rubrunghi.dev.minequotes.R;
 import com.squareup.picasso.Picasso;
 
 import chat.ChatActivity;
-
-
-/**
- *
- * Created by Administrator on 28.02.2018.
- */
+import chat.chatroom.ChatRoom;
 
 public class PlayerProfileActivity extends Fragment implements View.OnClickListener {
 
@@ -70,12 +66,23 @@ public class PlayerProfileActivity extends Fragment implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if(chatButton == view) {
-            ChatActivity chat = new ChatActivity();
-            Bundle b = new Bundle();
-            b.putString("empfaenger", p.getUuid());
-            chat.setArguments(b);
             FragmentManager fm = getActivity().getSupportFragmentManager();
+            Bundle b = new Bundle();
+
+            if(ChatRoom.getChats().get(p.getUuid()) != null) {
+                fm.beginTransaction().addToBackStack("").replace(R.id.main, ChatRoom.getChats().get(p.getUuid())).commit();
+                return;
+            }
+            ChatActivity chat = new ChatActivity();
+            b.putString("empfaenger", p.getUuid());
+            b.putString("name", playername.getText().toString());
+            chat.setArguments(b);
+
+            ChatRoom.setChats(playername.getText().toString(), chat);
             fm.beginTransaction().addToBackStack("").replace(R.id.main, chat).commit();
+
+
+
         }
     }
 

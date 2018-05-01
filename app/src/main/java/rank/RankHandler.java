@@ -6,6 +6,7 @@ import android.util.Log;
 import cz.msebera.android.httpclient.Header;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.rubrunghi.dev.minequotes.Client;
+import com.rubrunghi.dev.minequotes.MainActivity;
 
 import org.json.JSONArray;
 
@@ -42,4 +43,6 @@ public class RankHandler {
     public ArrayList<RankPlayer> getRanks() {
         return rankDatas;
     }
+
+
 }
